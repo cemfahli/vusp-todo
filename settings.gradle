@@ -1,3 +1,3 @@
-rootProject.name = 'vue-spring'
+rootProject.name = 'vusp-todo'
 include 'spring-app'
 include 'vue-app'

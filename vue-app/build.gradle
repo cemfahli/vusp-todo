@@ -11,6 +11,7 @@ buildscript {
 }
 
 apply plugin: 'base'
+apply plugin: 'java'
 apply plugin: 'com.moowork.node'
 
 node {
@@ -29,31 +30,7 @@ npm_run_build {
   outputs.dir 'dist'
 }
 
-task packageVueApp(type: Zip) {
+jar {
   dependsOn npm_run_build
-  baseName 'vue-app'
-  extension 'jar'
-  destinationDirectory = file("${projectDir}/build_packageVueApp")
-  from('dist') {
-    into 'static'
-  }
-}
-
-configurations {
-  vueResources
-}
-
-configurations.default.extendsFrom(configurations.vueResources)
-
-artifacts {
-  vueResources(packageVueApp.archivePath) {
-    builtBy packageVueApp
-    type "jar"
-  }
-}
-
-assemble.dependsOn packageVueApp
-
-clean {
-  delete packageVueApp.archivePath
+  from 'dist' into 'static'
 }
