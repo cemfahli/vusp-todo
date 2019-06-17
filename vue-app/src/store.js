@@ -52,7 +52,7 @@ export default new Vuex.Store({
     },
     isWarning(state) {
       return (state.warning !== '');
-    }
+    },
   },
   actions: {
   },
