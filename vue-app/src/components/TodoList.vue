@@ -4,7 +4,7 @@
       <li v-for="(task, index) in todoList" :key="task.id"
         class="list-group-item flex-column pr-2">
         <div class="task d-flex justify-content-between">
-          {{ task.task }}
+          <span style="white-space: pre;">{{ task.task }}</span>
           <a href="#"
             class="badge badge-pill badge-danger my-auto pt-1"
             @click.prevent="removeTask(task.id, index)">

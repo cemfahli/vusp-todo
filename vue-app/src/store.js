@@ -9,7 +9,7 @@ export default new Vuex.Store({
     warning: '',
     todoList: [
 /*  {     id: 1,
-      task: 'test',} */
+      task: 'test\ntest',} */
     ],
   },
   mutations: {

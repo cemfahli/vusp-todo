@@ -1,13 +1,15 @@
 <template>
   <div class="d-flex flex-column align-items-center">
     <div class="input-group input-group col-md-5 mt-2">
-      <input type="text"
+      <textarea
         name="new-task"
         id="new-task"
         class="form-control mr-md-1 mr-1"
+        rows="1"
         v-model="newTask"
-        @keyup.enter="addTask">
-      <div class="input-group-append ">
+        @keydown.enter="shiftEnter">
+      </textarea>
+      <div class="input-group-append">
         <button class="btn btn-primary"
           @click.prevent="addTask">
           <plus-icon stroke-width="4"></plus-icon>
@@ -30,6 +32,12 @@ export default {
     'plus-icon': plus,
   },
   methods: {
+    shiftEnter(e) {
+      if(!e.shiftKey){
+        e.preventDefault();
+        this.addTask();
+      }
+    },
     addTask() {
       const siteUrl = document.URL;
 
