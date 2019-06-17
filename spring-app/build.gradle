@@ -23,5 +23,3 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 	implementation(project(':vue-app'))
 }
-
-server.port = System.getenv('PORT') != null ? System.getenv('PORT') : 8081
