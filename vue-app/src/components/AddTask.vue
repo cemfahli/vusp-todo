@@ -5,7 +5,8 @@
         name="new-task"
         id="new-task"
         class="form-control mr-md-1 mr-1"
-        v-model="newTask">
+        v-model="newTask"
+        @keyup.enter="addTask">
       <div class="input-group-append ">
         <button class="btn btn-primary"
           @click.prevent="addTask">
@@ -51,6 +52,7 @@ export default {
           if(data.error !== undefined) throw new Error(data.message);
           this.$store.commit('addTask', data);
           this.$store.commit('clearWarning');
+          this.newTask = '';
         })
         .catch((error) => {
           console.log(error.message);

@@ -128,6 +128,9 @@ export default {
             if(data.error !== undefined) throw new Error(data.message);
             this.$store.commit('setToken', data.token);
             this.$store.commit('clearWarning');
+            this.username = '';
+            this.password = '';
+            this.verifyPassword = '';
           })
           .catch((error) => {
             console.log(error);
