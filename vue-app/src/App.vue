@@ -3,7 +3,8 @@
     <div class="logo container align-items-center">
       <img alt="Vusp logo"
         src="./assets/vusp-logo.svg"
-        class="col-md-5 col-7 m-5">
+        class="col-md-5 col-7 mt-5 mb-4">
+      <h1 class="mb-4">Todo List</h1>
     </div>
     <div class="col-md-5 align-self-center"
       v-if="this.$store.getters.isWarning">
