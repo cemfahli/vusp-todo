@@ -46,9 +46,11 @@ export default {
         mode: 'cors',
         headers: {
           Authorization: `Bearer ${this.$store.getters.getToken}`,
-/*           'Content-Type': 'application/json', */
+          'Content-Type': 'application/json',
         },
-        body: this.newTask,
+        body: JSON.stringify({
+          task: this.newTask
+        }),
       })
         .then((response) => {
           if (response !== null) {

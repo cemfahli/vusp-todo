@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import org.cem.springapp.exceptions.EmptyTaskException;
+import org.cem.springapp.model.DTOTask;
 import org.cem.springapp.model.ToDoTask;
 import org.cem.springapp.repository.ToDoTaskRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,12 +45,12 @@ public class ToDoListController {
   @RequestMapping(value="/items", method=RequestMethod.POST)
   public ResponseEntity<?> addToUsersToDoList(
     Authentication authentication,
-    @RequestBody(required = false) String task) {
+    @RequestBody(required = false) DTOTask task) {
     
     if (task == null) throw new EmptyTaskException();
     String user = authentication.getName();
     ToDoTask newTask = new ToDoTask();
-    newTask.setTask(task);
+    newTask.setTask(task.getTask());
     newTask.setUser(user);
     return ResponseEntity.ok(toDoTaskRepo.save(newTask));
   }

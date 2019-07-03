@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.assertj.core.api.Assertions;
 import org.cem.springapp.model.DAOUser;
+import org.cem.springapp.model.DTOTask;
 import org.cem.springapp.model.DTOUser;
 import org.cem.springapp.model.JwtRequest;
 import org.cem.springapp.model.ToDoTask;
@@ -98,8 +99,10 @@ public class HttpRequestTest {
 
     HttpHeaders header = authorizeHeader(authenticate().getToken());
     String newTask = "Sample Task";
+    DTOTask task = new DTOTask();
+    task.setTask(newTask);
 
-    HttpEntity<String> request = new HttpEntity<>(newTask, header);
+    HttpEntity<DTOTask> request = new HttpEntity<>(task, header);
 
     ResponseEntity<ToDoTask> result = restTemplate.exchange(
       "http://localhost:" + port + "/items",
@@ -107,9 +110,9 @@ public class HttpRequestTest {
       request,
       ToDoTask.class);
 
-    String task = result.getBody().getTask();
+    String receivedTask = result.getBody().getTask();
 
-    Assertions.assertThat(task).isEqualTo(newTask);
+    Assertions.assertThat(receivedTask).isEqualTo(newTask);
 
   }
 
@@ -119,13 +122,15 @@ public class HttpRequestTest {
 
     HttpHeaders header = authorizeHeader(authenticate().getToken());
     List<String> tasks = new ArrayList<String>();
+    DTOTask task = new DTOTask();
     
     for(int i = 0; i < 10; i++){
 
       String newTask = "Sample Task: " + i;
       tasks.add(newTask);
+      task.setTask(newTask);
 
-      HttpEntity<String> request = new HttpEntity<>(newTask, header);
+      HttpEntity<DTOTask> request = new HttpEntity<>(task, header);
 
       restTemplate.exchange(
         "http://localhost:" + port + "/items",
@@ -156,13 +161,15 @@ public class HttpRequestTest {
 
     HttpHeaders header = authorizeHeader(authenticate().getToken());
     List<String> tasks = new ArrayList<String>();
+    DTOTask task = new DTOTask();
     
     for(int i = 0; i < 10; i++){
 
       String newTask = "Sample Task: " + i;
       tasks.add(newTask);
+      task.setTask(newTask);
 
-      HttpEntity<String> request = new HttpEntity<>(newTask, header);
+      HttpEntity<DTOTask> request = new HttpEntity<>(task, header);
 
       restTemplate.exchange(
         "http://localhost:" + port + "/items",
